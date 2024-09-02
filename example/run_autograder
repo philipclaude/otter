@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cd /autograder/source
+cp ../submission/*.* .
+python3 otter/otter.py --check all --gradescope
+mv results.json ../results/

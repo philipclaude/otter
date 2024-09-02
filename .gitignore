@@ -1,0 +1,7 @@
+example/otter*
+example/*.md
+example/*.json
+example/*.zip
+example/*.py
+*.zip
+target

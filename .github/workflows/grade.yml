@@ -1,0 +1,64 @@
+name: Grader
+
+on:
+  pull_request:
+    branches: main
+  workflow_dispatch:
+    inputs:
+      checks:
+        description: 'Checks to run:'
+        type: choice
+        required: true
+        default: 'all'
+        options:
+          - style
+          - tests
+          - all
+      submission:
+        description: 'Which submission to use:'
+        type: choice
+        required: true
+        default: 'template'
+        options:
+          - template
+          - full_points
+          - missing_method
+          - compile_error
+          - style_failures
+          - test_failures
+          - timeout
+      system:
+        description: 'Select operating system:'
+        type: choice
+        required: true
+        default: 'ubuntu'
+        options:
+          - ubuntu
+          - windows
+          - macos
+
+jobs:
+  Grade:
+    runs-on: ${{ github.event.inputs.system }}-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        architecture: x64
+    - name: Download otter
+      run: |
+        cd example
+        curl -O https://philipclaude.github.io/otter/otter.zip
+        unzip -d otter otter.zip
+    - name: Check
+      run: |
+        cd example && python otter/otter.py --check "${{ github.event.inputs.checks }}" --source "submissions/${{ github.event.inputs.submission }}" --markdown results.md
+        echo "Results for submission: ${{ github.event.inputs.submission }}" >> $GITHUB_STEP_SUMMARY
+        cat results.md >> $GITHUB_STEP_SUMMARY
+        if [ "${{ github.event.inputs.system }}" == "windows" ]; then
+          cat $GITHUB_STEP_SUMMARY
+        fi
+      shell: bash

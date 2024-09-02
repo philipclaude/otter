@@ -1,0 +1,87 @@
+{
+  "library": [
+    "HelloWorld.java",
+    "Multiply.java"
+  ],
+  "submission": [
+    "HelloWorld.java",
+    "Multiply.java"
+  ],
+  "tests": {
+    "classes": [
+      {
+        "class": "HelloWorldTest",
+        "tests": [
+          {
+          "method": "testMain",
+          "info": "testing main runs",
+          "timeout": 10,
+          "points": 1
+          },
+          {
+            "method": "testOutput",
+            "info": "testing hello world message",
+            "timeout": 30,
+            "points": 2
+          },
+          {
+            "method": "testTimeout",
+            "info": "testing timeout",
+            "timeout": 30,
+            "points": 2
+          }
+        ]
+      },
+      {
+        "class": "MultiplyTest",
+        "tests": [
+          {
+            "method": "testMain",
+            "info": "testing multiply main",
+            "timeout": 30,
+            "points": 2
+          },
+          {
+            "method": "testMultiply",
+            "info": "testing multiplication function",
+            "timeout": 30,
+            "points": 2
+          },
+          {
+            "repeated": true,
+            "prefix": "testRepeated",
+            "info": "testing multiplication",
+            "start": 1,
+            "end": 3,
+            "points": 1
+          }
+        ]
+      }
+    ]
+  },
+  "style": {
+    "points": 1,
+    "checks": [
+      "regexp.RegexpSinglelineCheck",
+      "javadoc.MissingJavadocMethodCheck",
+      "TodoCommentCheck",
+      "NewlineAtEndOfFileCheck",
+      "UnusedLocalVariable",
+      "blocks.EmptyBlockCheck",
+      "blocks.NeedBracesCheck",
+      "blocks.LeftCurlyCheck",
+      "coding.EmptyStatementCheck",
+      "coding.MissingSwitchDefaultCheck",
+      "coding.MultipleVariableDeclarationsCheck",
+      "coding.SimplifyBooleanExpressionCheck",
+      "coding.StringLiteralEqualityCheck",
+      "coding.UnusedLocalVariableCheck",
+      "indentation.IndentationCheck",
+      "sizes.LineLengthCheck",
+      "whitespace.MethodParamPadCheck",
+      "whitespace.ParenPadCheck",
+      "whitespace.WhitespaceAfterCheck",
+      "whitespace.WhitespaceAroundCheck"
+    ]
+  }
+}
