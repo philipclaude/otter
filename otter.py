@@ -326,8 +326,8 @@ def main():
               style_report += info + os.linesep
               result = CheckstyleError(filename, line, info, source)
               style_results.append(result)
-          if n_errors == 0:
-            style_points = max_style_points
+        if n_errors == 0:
+          style_points = max_style_points
       else:
         style_report = result.stdout.decode(encoding="utf-8")
     except Exception as e: # pylint: disable=broad-except
